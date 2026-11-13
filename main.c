@@ -122,7 +122,7 @@ int main() {
                 if (!simulacionEjecutada) {
                     printf("Debe ejecutar la simulacion primero (opcion 2).\n");
                 } else {
-                    printf("[EN CONSTRUCCION] Reporte final\n");
+                    mostrarReporte(&capsula, &resultado);
                 }
                 break;
             case 0:

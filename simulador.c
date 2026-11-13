@@ -170,3 +170,61 @@ void ejecutarSimulacionCompleta(Capsula *cap, ResultadoSimulacion *res) {
     printf("Equivale a %.2f veces el peso\n", res->pesoMultiplo);
     printf("\nSIMULACION COMPLETADA\n");
 }
+
+void mostrarReporte(const Capsula *cap, const ResultadoSimulacion *res) {
+    printf("\n");
+    printf("==========================================================\n");
+    printf("         REPORTE FINAL DE LA MISION ARTEMIS\n");
+    printf("==========================================================\n");
+    printf("\n");
+    printf("  PARAMETROS DE LA MISION\n");
+    printf("  --------------------------------------------------------\n");
+    printf("  Masa de la capsula:           %12.1f kg\n", cap->masa);
+    printf("  Velocidad de reingreso:       %12.1f m/s\n", cap->velocidadInicial);
+    printf("  Velocidad paracaidas:         %12.1f m/s\n", cap->velocidadFinal);
+    printf("  Velocidad de impacto:         %12.1f m/s\n", cap->velocidadImpacto);
+    printf("  Altitud de reingreso:         %12.1f m\n", cap->altitudReingreso);
+    printf("  Altitud paracaidas:           %12.1f m\n", cap->altitudParacaidas);
+    printf("  Angulo de reingreso:          %12.2f grados\n", cap->anguloReingreso);
+    printf("  Tiempo de desaceleracion:     %12.1f s\n", cap->tiempoDesaceleracion);
+    printf("  Profundidad de hundimiento:   %12.2f m\n", cap->profundidadHundimiento);
+    printf("\n");
+    printf("  RESULTADOS DE LA SIMULACION\n");
+    printf("  --------------------------------------------------------\n");
+    printf("  Trabajo de rozamiento:        %15.2e J\n", res->trabajoRozamiento);
+    printf("  Desaceleracion media:         %12.2f m/s2\n", res->desaceleracionMedia);
+    printf("  Fuerzas G:                    %12.2f g\n", res->fuerzasG);
+    printf("  Fuerza de amerizaje:          %12.2f N\n", res->fuerzaAmerizaje);
+    printf("  Fuerza/Peso de la nave:       %12.2f veces\n", res->pesoMultiplo);
+    printf("  Reingreso seguro:             %12s\n",
+           res->reingresoSeguro ? "SI" : "NO");
+    printf("\n");
+    printf("  ESTADO FINAL DE LA MISION\n");
+    printf("  --------------------------------------------------------\n");
+
+    if (res->reingresoSeguro) {
+        printf("  [OK] Angulo de reingreso dentro de ventana segura.\n");
+    } else {
+        printf("  [!!] Angulo de reingreso FUERA de ventana segura.\n");
+    }
+
+    if (res->fuerzasG <= 10.0) {
+        printf("  [OK] Fuerzas G dentro de limites humanos.\n");
+    } else {
+        printf("  [!!] Fuerzas G EXCEDEN el limite humano.\n");
+    }
+
+    if (res->pesoMultiplo <= 20.0) {
+        printf("  [OK] Fuerza de amerizaje dentro de tolerancia estructural.\n");
+    } else {
+        printf("  [!!] Fuerza de amerizaje EXCEDE tolerancia estructural.\n");
+    }
+
+    printf("\n==========================================================\n");
+    if (res->reingresoSeguro && res->fuerzasG <= 10.0) {
+        printf("  VEREDICTO: MISION EXITOSA - Tripulacion a salvo\n");
+    } else {
+        printf("  VEREDICTO: MISION FALLIDA - Revisar parametros\n");
+    }
+    printf("==========================================================\n");
+}
