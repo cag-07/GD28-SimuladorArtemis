@@ -40,12 +40,41 @@ int main() {
                 printf("[EN CONSTRUCCION] Simular reingreso\n");
                 simulacionEjecutada = 1;
                 break;
-            case 3:
-                printf("[EN CONSTRUCCION] Trabajo de rozamiento\n");
+            case 3: {
+                double trabajo = calcularTrabajoRozamiento(
+                    capsula.masa,
+                    capsula.velocidadInicial,
+                    capsula.velocidadFinal);
+
+                printf("\nTrabajo de rozamiento: %.2e J\n", trabajo);
+                printf("Energia disipada: %.2e J\n", fabs(trabajo));
                 break;
-            case 4:
-                printf("[EN CONSTRUCCION] Desaceleracion media\n");
+            }
+            case 4: {
+                if (capsula.tiempoDesaceleracion <= 0) {
+                    printf("Error: el tiempo debe ser mayor que cero.\n");
+                    break;
+                }
+
+                double desaceleracion = calcularDesaceleracionMedia(
+                    capsula.velocidadInicial,
+                    capsula.velocidadFinal,
+                    capsula.tiempoDesaceleracion);
+
+                double fuerzasG = calcularFuerzasG(desaceleracion);
+
+                printf("\nDesaceleracion media: %.2f m/s2\n", desaceleracion);
+                printf("Fuerzas G: %.2f g\n", fuerzasG);
+
+                if (fuerzasG > 10.0) {
+                    printf("ALERTA: supera el limite de referencia de 10 g.\n");
+                } else if (fuerzasG > 6.0) {
+                    printf("ADVERTENCIA: fuerzas G elevadas.\n");
+                } else {
+                    printf("Dentro del limite de referencia del simulador.\n");
+                }
                 break;
+            }
             case 5:
                 printf("[EN CONSTRUCCION] Fuerza de amerizaje\n");
                 break;
