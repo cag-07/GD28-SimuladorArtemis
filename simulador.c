@@ -101,3 +101,72 @@ int analizarAnguloReingreso(double angulo, char *mensajeSalida) {
         printf("\nSe mantienen los parametros actuales.\n");
     }
 }
+void ejecutarSimulacionCompleta(Capsula *cap, ResultadoSimulacion *res) {
+    char mensaje[1024];
+
+    /* Limpia resultados de una simulacion anterior. */
+    *res = (ResultadoSimulacion){0};
+
+    printf("\n=== SIMULACION COMPLETA DE REINGRESO ===\n");
+
+    if (cap->masa <= 0 ||
+        cap->tiempoDesaceleracion <= 0 ||
+        cap->profundidadHundimiento <= 0) {
+        printf("Error: masa, tiempo y profundidad deben ser positivos.\n");
+        return;
+    }
+
+    printf("\nFASE 1: Verificacion del angulo\n");
+    res->reingresoSeguro = analizarAnguloReingreso(
+        cap->anguloReingreso, mensaje);
+
+    snprintf(res->mensajeAngulo, sizeof res->mensajeAngulo,
+             "Angulo %.2f grados: %s",
+             cap->anguloReingreso,
+             res->reingresoSeguro ? "seguro" : "fuera de rango");
+
+    printf("%s\n", mensaje);
+
+    if (!res->reingresoSeguro) {
+        printf("SIMULACION ABORTADA: angulo fuera de rango seguro.\n");
+        return;
+    }
+
+    printf("\nFASE 2: Reingreso atmosferico\n");
+    printf("Altitud: %.0f m -> %.0f m\n",
+           cap->altitudReingreso, cap->altitudParacaidas);
+    printf("Velocidad: %.1f m/s -> %.1f m/s\n",
+           cap->velocidadInicial, cap->velocidadFinal);
+
+    res->trabajoRozamiento = calcularTrabajoRozamiento(
+        cap->masa, cap->velocidadInicial, cap->velocidadFinal);
+
+    printf("Trabajo de rozamiento: %.2e J\n", res->trabajoRozamiento);
+    printf("Energia disipada: %.2e J\n", fabs(res->trabajoRozamiento));
+
+    printf("\nFASE 3: Desaceleracion\n");
+    res->desaceleracionMedia = calcularDesaceleracionMedia(
+        cap->velocidadInicial,
+        cap->velocidadFinal,
+        cap->tiempoDesaceleracion);
+
+    res->fuerzasG = calcularFuerzasG(res->desaceleracionMedia);
+
+    printf("Desaceleracion media: %.2f m/s2\n", res->desaceleracionMedia);
+    printf("Fuerzas G: %.2f g\n", res->fuerzasG);
+
+    printf("\nFASE 4: Despliegue de paracaidas\n");
+    printf("Velocidad: %.1f m/s -> %.1f m/s\n",
+           cap->velocidadFinal, cap->velocidadImpacto);
+
+    printf("\nFASE 5: Amerizaje\n");
+    res->fuerzaAmerizaje = calcularFuerzaAmerizaje(
+        cap->masa, cap->velocidadImpacto, cap->profundidadHundimiento);
+
+    res->pesoMultiplo = calcularPesoMultiplo(
+        res->fuerzaAmerizaje, cap->masa);
+
+    printf("Fuerza promedio: %.2f N\n", res->fuerzaAmerizaje);
+    printf("Equivale a %.2f veces el peso\n", res->pesoMultiplo);
+    printf("\nSIMULACION COMPLETADA\n");
+}

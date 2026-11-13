@@ -37,8 +37,8 @@ int main() {
                 configurarCapsula(&capsula);
                 break;
             case 2:
-                printf("[EN CONSTRUCCION] Simular reingreso\n");
-                simulacionEjecutada = 1;
+                ejecutarSimulacionCompleta(&capsula, &resultado);
+                simulacionEjecutada = resultado.reingresoSeguro;
                 break;
             case 3: {
                 double trabajo = calcularTrabajoRozamiento(
