@@ -1,7 +1,7 @@
 #include "simulador.h"
 #include <stdio.h>
 #include <math.h>
-
+#include "validaciones.h"
 double calcularTrabajoRozamiento(double masa, double vi, double vf) {
     return 0.5 * masa * (vf * vf - vi * vi);
 }
@@ -66,5 +66,38 @@ int analizarAnguloReingreso(double angulo, char *mensajeSalida) {
             "  Las fuerzas G se mantienen dentro de limites tolerables.",
             angulo, ANGULO_MIN, ANGULO_MAX);
         return 1;
+    }
+}void configurarCapsula(Capsula *cap) {
+    char opcion;
+
+    printf("\n--- CONFIGURACION DE PARAMETROS DE LA MISION ---\n\n");
+
+    printf("Valores actuales:\n");
+    printf("Masa: %.1f kg\n", cap->masa);
+    printf("Velocidad de reingreso: %.1f m/s\n", cap->velocidadInicial);
+    printf("Velocidad paracaidas: %.1f m/s\n", cap->velocidadFinal);
+    printf("Velocidad de impacto: %.1f m/s\n", cap->velocidadImpacto);
+    printf("Altitud de reingreso: %.1f m\n", cap->altitudReingreso);
+    printf("Altitud paracaidas: %.1f m\n", cap->altitudParacaidas);
+    printf("Angulo de reingreso: %.2f grados\n", cap->anguloReingreso);
+    printf("Tiempo de desaceleracion: %.1f s\n", cap->tiempoDesaceleracion);
+    printf("Profundidad de hundimiento: %.2f m\n", cap->profundidadHundimiento);
+
+    opcion = leerCaracter("\nDesea modificar los parametros? (S/N)", "SsNn");
+
+    if (opcion == 'S' || opcion == 's') {
+        cap->masa = leerDoublePositivo("Masa de la capsula (kg)");
+        cap->velocidadInicial = leerDoublePositivo("Velocidad de reingreso (m/s)");
+        cap->velocidadFinal = leerDouble("Velocidad paracaidas (m/s)", 1.0, cap->velocidadInicial);
+        cap->velocidadImpacto = leerDouble("Velocidad de impacto (m/s)", 1.0, cap->velocidadFinal);
+        cap->altitudReingreso = leerDoublePositivo("Altitud de reingreso (m)");
+        cap->altitudParacaidas = leerDouble("Altitud paracaidas (m)", 0.0, cap->altitudReingreso);
+        cap->anguloReingreso = leerDouble("Angulo de reingreso (grados)", 0.1, 90.0);
+        cap->tiempoDesaceleracion = leerDoublePositivo("Tiempo de desaceleracion (s)");
+        cap->profundidadHundimiento = leerDoublePositivo("Profundidad de hundimiento (m)");
+
+        printf("\nParametros actualizados correctamente.\n");
+    } else {
+        printf("\nSe mantienen los parametros actuales.\n");
     }
 }
