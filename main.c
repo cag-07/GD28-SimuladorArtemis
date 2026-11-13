@@ -34,7 +34,7 @@ int main() {
         opcion = leerEntero("Seleccione una opcion", 0, 7);
         switch (opcion) {
             case 1:
-                printf("[EN CONSTRUCCION] Configurar parametros\n");
+                configurarCapsula(&capsula);
                 break;
             case 2:
                 printf("[EN CONSTRUCCION] Simular reingreso\n");
