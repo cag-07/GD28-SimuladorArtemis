@@ -75,12 +75,49 @@ int main() {
                 }
                 break;
             }
-            case 5:
-                printf("[EN CONSTRUCCION] Fuerza de amerizaje\n");
+            case 5: {
+                printf("\n--- CALCULO: FUERZA DE AMERIZAJE ---\n");
+                printf("  Usando: masa=%.1f kg, Vimpacto=%.1f m/s, d=%.2f m\n",
+                       capsula.masa, capsula.velocidadImpacto,
+                       capsula.profundidadHundimiento);
+
+                if (capsula.profundidadHundimiento <= 0) {
+                    printf("  Error: la profundidad de hundimiento debe ser mayor a cero.\n");
+                    break;
+                }
+
+                double fuerza = calcularFuerzaAmerizaje(
+                    capsula.masa, capsula.velocidadImpacto,
+                    capsula.profundidadHundimiento);
+                double multiplo = calcularPesoMultiplo(fuerza, capsula.masa);
+
+                printf("\n  Fuerza promedio del agua: %.2f N\n", fuerza);
+                printf("  Equivale a %.2f veces el peso de la nave\n", multiplo);
+
+                if (multiplo > 20.0) {
+                    printf("  !! PELIGRO: Impacto estructuralmente peligroso !!\n");
+                } else {
+                    printf("  OK: Dentro de tolerancias estructurales.\n");
+                }
                 break;
-            case 6:
-                printf("[EN CONSTRUCCION] Angulo de reingreso\n");
+            }
+            case 6: {
+                char mensaje[200];
+                printf("\n--- ANALISIS: ANGULO DE REINGRESO ---\n");
+                printf("  Angulo configurado: %.2f grados\n", capsula.anguloReingreso);
+                printf("  Ventana segura: %.1f a %.1f grados\n", ANGULO_MIN, ANGULO_MAX);
+
+                int seguro = analizarAnguloReingreso(capsula.anguloReingreso, mensaje);
+
+                printf("\n  %s\n", mensaje);
+
+                if (!seguro) {
+                    printf("\n  >> La mision habria FRACASADO con este angulo.\n");
+                } else {
+                    printf("\n  >> La mision puede completarse exitosamente.\n");
+                }
                 break;
+            }
             case 7:
                 if (!simulacionEjecutada) {
                     printf("Debe ejecutar la simulacion primero (opcion 2).\n");
