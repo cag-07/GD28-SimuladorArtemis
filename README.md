@@ -8,7 +8,7 @@
 | González | 28764 |
 | Solís | 25598 |
 
-**Comisión:** [completar]  
+**Comisión:** K1.4-ISI "D"  
 **Materia:** Algoritmos y Estructuras de Datos — UTN FRRe  
 
 ---
