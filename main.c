@@ -2,19 +2,9 @@
 // Módulo Principal — Simulador de Reingreso Artemis
 // Integrantes: Fleitas, Zarate, González, Solís
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
 #include "simulador.h"
 #include "validaciones.h"
-
-void limpiar_pantalla(void)
-{
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
-}
 
 void mostrarMenu(void) {
     printf("\n");
@@ -40,7 +30,7 @@ int main() {
     printf("Bienvenido al Simulador de Reingreso Atmosferico Artemis\n");
     printf("Capsula Orion - Mision de retorno lunar\n");
     do {
-        limpiar_pantalla();
+        limpiarPantalla();
         mostrarMenu();
         opcion = leerEntero("Seleccione una opcion", 0, 7);
         switch (opcion) {
