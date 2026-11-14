@@ -36,7 +36,7 @@ typedef struct {
     double fuerzaAmerizaje;
     double pesoMultiplo;
     int reingresoSeguro;
-    char mensajeAngulo[200];
+    char mensajeAngulo[512];
 } ResultadoSimulacion;
 
 // ═══ PROTOTIPOS ═══
