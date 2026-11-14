@@ -45,8 +45,6 @@ https://www.youtube.com/playlist?list=PLV1gl3RQPZ-0
 
 ---
 
-## Uso de Inteligencia Artificial
-[Completado por Fleitas en Paso 19]
 ## Registro de uso de Inteligencia Artificial
 
 Durante el desarrollo del proyecto utilizamos ChatGPT principalmente como una herramienta de consulta y organización.
