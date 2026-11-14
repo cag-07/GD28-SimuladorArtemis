@@ -24,6 +24,7 @@ void mostrarMenu(void) {
 int main() {
     Capsula capsula;
     ResultadoSimulacion resultado;
+    resultado = (ResultadoSimulacion){0};
     int opcion;
     int simulacionEjecutada = 0;
     inicializarCapsula(&capsula);
@@ -103,7 +104,7 @@ int main() {
                 break;
             }
             case 6: {
-                char mensaje[200];
+                char mensaje[512];
                 printf("\n--- ANALISIS: ANGULO DE REINGRESO ---\n");
                 printf("  Angulo configurado: %.2f grados\n", capsula.anguloReingreso);
                 printf("  Ventana segura: %.1f a %.1f grados\n", ANGULO_MIN, ANGULO_MAX);
