@@ -41,7 +41,7 @@ gcc -Wall -Wextra -o simulador main.c simulador.c validaciones.c -lm
 ---
 
 ## Video de Presentación
-[Enlace al video de YouTube / Drive / Loom]
+https://www.youtube.com/playlist?list=PLV1gl3RQPZ-0
 
 ---
 
