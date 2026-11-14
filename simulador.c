@@ -67,7 +67,7 @@ int analizarAnguloReingreso(double angulo, char *mensajeSalida) {
             angulo, ANGULO_MIN, ANGULO_MAX);
         return 1;
     }
-}void configurarCapsula(Capsula *cap) {
+     void configurarCapsula(Capsula *cap) {
     char opcion;
 
     printf("\n--- CONFIGURACION DE PARAMETROS DE LA MISION ---\n\n");
@@ -87,7 +87,7 @@ int analizarAnguloReingreso(double angulo, char *mensajeSalida) {
 
     if (opcion == 'S' || opcion == 's') {
         cap->masa = leerDoublePositivo("Masa de la capsula (kg)");
-        cap->velocidadInicial = leerDoublePositivo("Velocidad de reingreso (m/s)");
+        cap->velocidadInicial = leerDouble("Velocidad de reingreso (m/s)", 1.0, 20000.0);
         cap->velocidadFinal = leerDouble("Velocidad paracaidas (m/s)", 1.0, cap->velocidadInicial);
         cap->velocidadImpacto = leerDouble("Velocidad de impacto (m/s)", 1.0, cap->velocidadFinal);
         cap->altitudReingreso = leerDoublePositivo("Altitud de reingreso (m)");
