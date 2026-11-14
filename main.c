@@ -38,7 +38,7 @@ int main() {
                 break;
             case 2:
                 ejecutarSimulacionCompleta(&capsula, &resultado);
-                simulacionEjecutada = resultado.reingresoSeguro;
+                simulacionEjecutada = 1;
                 break;
             case 3: {
                 double trabajo = calcularTrabajoRozamiento(
@@ -81,10 +81,10 @@ int main() {
                        capsula.masa, capsula.velocidadImpacto,
                        capsula.profundidadHundimiento);
 
-                if (capsula.profundidadHundimiento <= 0) {
-                    printf("  Error: la profundidad de hundimiento debe ser mayor a cero.\n");
-                    break;
-                }
+                  if (capsula.profundidadHundimiento <= 0 || capsula.masa <= 0) {
+                      printf("  Error: la masa y la profundidad deben ser mayores que cero.\n");
+                      break;
+                      }
 
                 double fuerza = calcularFuerzaAmerizaje(
                     capsula.masa, capsula.velocidadImpacto,
