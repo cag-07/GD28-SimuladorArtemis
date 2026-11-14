@@ -67,7 +67,7 @@ int analizarAnguloReingreso(double angulo, char *mensajeSalida) {
             angulo, ANGULO_MIN, ANGULO_MAX);
         return 1;
     }
-     void configurarCapsula(Capsula *cap) {
+    } void configurarCapsula(Capsula *cap) {
     char opcion;
 
     printf("\n--- CONFIGURACION DE PARAMETROS DE LA MISION ---\n\n");
