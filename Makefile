@@ -2,7 +2,7 @@
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra
+CFLAGS = -std=c11 -Wall -Wextra -Wpedantic
 
 LDFLAGS = -lm
 
@@ -21,7 +21,7 @@ $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -c $<
 
 clean:
-	del /Q *.o $(TARGET).exe 2>nul || rm -f *.o $(TARGET)
+	rm -f *.o $(TARGET)
 
 run: $(TARGET)
 	./$(TARGET)
