@@ -47,3 +47,14 @@ https://www.youtube.com/playlist?list=PLV1gl3RQPZ-0
 
 ## Uso de Inteligencia Artificial
 [Completado por Fleitas en Paso 19]
+## Registro de uso de Inteligencia Artificial
+
+Durante el desarrollo del proyecto utilizamos ChatGPT principalmente como una herramienta de consulta y organización.
+
+Al principio, nos ayudó a elaborar un cronograma de trabajo para distribuir las tareas entre los integrantes, establecer qué debía hacer cada uno y organizar los avances del proyecto.
+
+También lo utilizamos para aclarar algunas dudas sobre el lenguaje C, comprender mejor ciertas funciones y consultar posibles soluciones cuando aparecían errores.
+
+En cuanto a la programación, intentamos desarrollar el código por nuestra cuenta, utilizando la IA como apoyo en momentos puntuales para revisar errores o entender mejor algunos procedimientos.
+
+La organización, las decisiones sobre el funcionamiento del simulador, las pruebas y la integración de los módulos fueron realizadas por los integrantes del equipo.
