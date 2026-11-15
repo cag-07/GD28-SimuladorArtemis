@@ -28,6 +28,7 @@
 ---
 
 ## Compilación y Ejecución
+En la carpeta donde se encuentran todos los archivos abrir un terminal Powershell (Shift + Click derecho) y ejecutar el comando make:
 ```bash
 make
 ./simulador
